@@ -15,7 +15,7 @@ function updateCheckpointFor(player, delta)
 	state.checkpoint = math.max(state.checkpoint + delta, 1)
 
 	local timeToCheck = state.speedCheck and state.speedCheck.start or false
-	triggerClientEvent(player, g_STATE_UPDATE_EVENT, resourceRoot, {
+	triggerClientEvent(player, g_PLAYER_STATE_UPDATE_EVENT, resourceRoot, {
 		markers = state.markers,
 		pickups = state.pickups,
 		checkpoint = state.checkpoint,
@@ -28,7 +28,7 @@ function updatePickupsFor(player, delta)
 	state.pickups = math.max(state.pickups + delta, 0)
 
 	local timeToCheck = state.speedCheck and state.speedCheck.start or false
-	triggerClientEvent(player, g_STATE_UPDATE_EVENT, resourceRoot, {
+	triggerClientEvent(player, g_PLAYER_STATE_UPDATE_EVENT, resourceRoot, {
 		markers = state.markers,
 		pickups = state.pickups,
 		checkpoint = state.checkpoint,
@@ -39,10 +39,10 @@ end
 function getNewMarkersFor(player)
 	local state = g_PlayerStates[player]
 
-	state.markers = uniqueRandoms(#g_PICKUP_POSITIONS, g_PICKUPS_FOR_LEVEL(state.checkpoint))
+	state.markers = uniqueRandoms(#g_PATIENT_PICKUP_POSITIONS, g_PICKUPS_FOR_LEVEL(state.checkpoint))
 
 	local timeToCheck = state.speedCheck and getTimerDetails(state.speedCheck) or false
-	triggerClientEvent(player, g_STATE_UPDATE_EVENT, resourceRoot, {
+	triggerClientEvent(player, g_PLAYER_STATE_UPDATE_EVENT, resourceRoot, {
 		markers = state.markers,
 		pickups = state.pickups,
 		checkpoint = state.checkpoint,
@@ -50,7 +50,7 @@ function getNewMarkersFor(player)
 	})
 
 	for _, id in ipairs(state.markers) do
-		triggerClientEvent(player, g_NEW_PICKUP_EVENT, resourceRoot, id)
+		triggerClientEvent(player, g_NEW_PATIENT_MARKER_EVENT, resourceRoot, id)
 	end
 end
 
@@ -63,7 +63,7 @@ function triggerSpeedCheckFor(player, onSuccessFn)
 		timer = setTimer(function()
 			local x, y, z = getElementVelocity(vehicle)
 			local completeVelocity = x * x + y * y + z * z
-			if completeVelocity < g_MAX_PICKUP_SPEED then
+			if completeVelocity < g_PICKUP_SPEED_LIMIT then
 				removeSpeedCheckFor(player)
 				onSuccessFn()
 				return
@@ -72,7 +72,7 @@ function triggerSpeedCheckFor(player, onSuccessFn)
 		start = getTickCount()
 	}
 
-	triggerClientEvent(player, g_STATE_UPDATE_EVENT, resourceRoot, {
+	triggerClientEvent(player, g_PLAYER_STATE_UPDATE_EVENT, resourceRoot, {
 		markers = state.markers,
 		pickups = state.pickups,
 		checkpoint = state.checkpoint,
@@ -86,7 +86,7 @@ function removeSpeedCheckFor(player)
 	killTimer(state.speedCheck.timer)
 	state.speedCheck = nil
 
-	triggerClientEvent(player, g_STATE_UPDATE_EVENT, resourceRoot, {
+	triggerClientEvent(player, g_PLAYER_STATE_UPDATE_EVENT, resourceRoot, {
 		markers = state.markers,
 		pickups = state.pickups,
 		checkpoint = state.checkpoint,
@@ -131,12 +131,12 @@ function updatePlayerRanks() -- unused
 		return s1.checkpoint > s2.checkpoint
 	end)
 
-	triggerClientEvent(root, g_PLAYER_RANKING_UPDATE, resourceRoot, states)
+	triggerClientEvent(root, g_PLAYERS_RANKING_UPDATE, resourceRoot, states)
 end
 
 function initializePickups()
-	for i, p in ipairs(g_PICKUP_POSITIONS) do
-		local col = createColCircle(getElementData(p, "posX"), getElementData(p, "posY"), g_PICKUP_SIZE)
+	for i, p in ipairs(g_PATIENT_PICKUP_POSITIONS) do
+		local col = createColCircle(getElementData(p, "posX"), getElementData(p, "posY"), g_PATIENT_PICKUP_MARKER_SIZE)
 
 		addEventHandler("onColShapeHit", col, function(element)
 			-- start timer for player to listen to checkpoint to stop
@@ -146,14 +146,14 @@ function initializePickups()
 			local state = g_PlayerStates[player]
 			if not state then return end
 
-			if state.pickups >= g_MAX_PICKUPS then return end
+			if state.pickups >= g_MAX_PATIENTS_IN_VEHICLE then return end
 
 			for i2, v in ipairs(state.markers) do
 				if v == i then
 					triggerSpeedCheckFor(player, function()
 						-- need state event?
 						local id = table.remove(state.markers, i2)
-						triggerClientEvent(player, g_PICKUP_PATIENT_EVENT, resourceRoot, i)
+						triggerClientEvent(player, g_PATIENT_PICKED_UP_EVENT, resourceRoot, i)
 
 						updatePickupsFor(player, 1)
 					end)
@@ -177,7 +177,7 @@ end
 
 function initializeHospitals()
 	for _, h in ipairs(g_HOSPITAL_POSITIONS) do
-		local collision = createColCircle(getElementData(h, "posX"), getElementData(h, "posY"), g_PICKUP_SIZE)
+		local collision = createColCircle(getElementData(h, "posX"), getElementData(h, "posY"), g_PATIENT_PICKUP_MARKER_SIZE)
 
 		addEventHandler("onColShapeHit", collision, function(element)
 			local player, vehicle = toPlayer(element)
@@ -189,8 +189,8 @@ function initializeHospitals()
 			if state.pickups == 0 then return end
 
 			triggerSpeedCheckFor(player, function()
-				triggerClientEvent(player, g_PATIENT_DROPOFF_EVENT, resourceRoot, state.pickups)
-				updatePickupsFor(player, -g_MAX_PICKUPS)
+				triggerClientEvent(player, g_PATIENTS_DROPPED_OFF_EVENT, resourceRoot, state.pickups)
+				updatePickupsFor(player, -g_MAX_PATIENTS_IN_VEHICLE)
 
 				if #state.markers == 0 then
 					-- internal race implementation details that makes things work
@@ -251,7 +251,7 @@ end)
 addEventHandler("onPlayerJoin", root, function()
 	local player = source
 
-	if g_PlayerStates[player] return
+	if g_PlayerStates[player] then return end
 
 	g_PlayerStates[player] = initializeState()
 	getNewMarkersFor(player)

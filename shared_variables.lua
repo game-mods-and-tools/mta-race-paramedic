@@ -1,17 +1,16 @@
-g_MAX_PICKUPS = 3
-g_PICKUP_SIZE = 4
+g_MAX_PATIENTS_IN_VEHICLE = 3
+g_PATIENT_PICKUP_MARKER_SIZE = 4
 g_SPEED_CHECK_INTERVAL = 500
-g_MAX_PICKUP_SPEED = 0.005
+g_PICKUP_SPEED_LIMIT = 0.005
 
-g_STATE_UPDATE_EVENT = "onStateUpdate"
-g_NEW_PICKUP_EVENT = "onMarkerReceived"
-g_PICKUP_PATIENT_EVENT = "onMarkerTouched"
-g_HOSPITAL_LOCATION_EVENT = "onHospitalMarkerReceived"
-g_PATIENT_DROPOFF_EVENT = "onPatientsDroppedOff"
-g_PLAYER_RANKING_UPDATE = "onRanksUpdated"
+g_PLAYER_STATE_UPDATE_EVENT = "onPlayerStateUpdate"
+g_NEW_PATIENT_MARKER_EVENT = "onNewPatientMarker"
+g_PATIENT_PICKED_UP_EVENT = "onPatientPickedUp"
+g_PATIENTS_DROPPED_OFF_EVENT = "onPatientsDroppedOff"
+g_PLAYERS_RANKING_UPDATE = "onPlayersRanksUpdated" -- unused
 
 g_NUM_LEVELS = #getElementsByType("checkpoint", resourceRoot)
-g_PICKUP_POSITIONS = getElementsByType("patient", resourceRoot)
+g_PATIENT_PICKUP_POSITIONS = getElementsByType("patient", resourceRoot)
 g_HOSPITAL_POSITIONS = getElementsByType("hospital", resourceRoot)
 
 function g_PICKUPS_FOR_LEVEL(level)
