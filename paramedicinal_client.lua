@@ -57,13 +57,25 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 		local screenWidth, screenHeight = guiGetScreenSize()
 
 		if g_State then
-			dxDrawText("LEVEL                  " .. g_State.checkpoint .. "/" .. g_NUM_LEVELS, screenWidth * 0.65 + 2, screenHeight * 0.25 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
-			dxDrawText("LEVEL                  " .. g_State.checkpoint .. "/" .. g_NUM_LEVELS, screenWidth * 0.65, screenHeight * 0.25, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
-			dxDrawText("PATIENTS             " .. #g_State.markers, screenWidth * 0.65 + 2, screenHeight * 0.28 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
-			dxDrawText("PATIENTS             " .. #g_State.markers, screenWidth * 0.65, screenHeight * 0.28, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
-			dxDrawText("SEATS FREE         " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65 + 2, screenHeight * 0.33 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
-			dxDrawText("SEATS FREE         " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65, screenHeight * 0.33, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
+			dxDrawText("LEVEL              " .. g_State.checkpoint .. "/" .. g_NUM_LEVELS, screenWidth * 0.65 + 2, screenHeight * 0.25 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+			dxDrawText("LEVEL              " .. g_State.checkpoint .. "/" .. g_NUM_LEVELS, screenWidth * 0.65, screenHeight * 0.25, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
+			dxDrawText("PATIENTS              " .. #g_State.markers, screenWidth * 0.65 + 2, screenHeight * 0.28 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+			dxDrawText("PATIENTS              " .. #g_State.markers, screenWidth * 0.65, screenHeight * 0.28, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
+			dxDrawText("SEATS FREE          " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65 + 2, screenHeight * 0.33 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+			dxDrawText("SEATS FREE          " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65, screenHeight * 0.33, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
+		end
+		if g_State.speedCheckTimer then -- pickup timer visualisationicator
+			local elapsed = getTickCount() - g_State.speedCheckTimer
+			local timeToCheck = elapsed % g_SPEED_CHECK_INTERVAL
+			local percent = timeToCheck / g_SPEED_CHECK_INTERVAL
+
+			local x, y, z = getElementVelocity(getPedOccupiedVehicle(localPlayer))
+			local completeVelocity = x * x + y * y + z * z
+			local color = completeVelocity < g_MAX_PICKUP_SPEED and tocolor(0, 255, 0, 255) or tocolor(255, 0, 0, 255)
+
+			dxDrawRectangle(screenWidth / 2 - 126, screenHeight * 0.85, 252, 27, tocolor(0, 0, 0))
+			dxDrawRectangle(screenWidth / 2 - 122, screenHeight * 0.85 + 4, 244, 19, tocolor(40, 40, 40))
+			dxDrawRectangle(screenWidth / 2 - 122, screenHeight * 0.85 + 4, 244 * percent, 19, color)
 		end
 	end)
 end)
-
