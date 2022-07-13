@@ -418,7 +418,10 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 
 				if #state.markers == 0 then
 					-- internal race implementation details that makes things work
-					triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
+					local internalCheckpoint = getElementData(player, "race.checkpoint")
+					if state.checkpoint == internalCheckpoint then -- only increment if these are equal in case of deaths rolling back checkpoints
+						triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
+					end
 					-- triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
 
 					if state.checkpoint == g_NUM_LEVELS then return end
