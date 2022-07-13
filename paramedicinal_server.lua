@@ -414,8 +414,9 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 			updatePickupsFor(player, -g_MAX_PICKUPS)
 
 			if #state.markers == 0 then
-				-- internal race implementation detail that makes things work
-				triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
+				-- internal race implementation details that makes things work
+				triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
+				-- triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
 
 				updateCheckpointFor(player, 1)
 				getNewMarkersFor(player)
