@@ -78,7 +78,8 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 
 				local x, y, z = getElementVelocity(getPedOccupiedVehicle(localPlayer))
 				local completeVelocity = x * x + y * y + z * z
-				local color = completeVelocity < g_PICKUP_SPEED_LIMIT and tocolor(0, 255, 0, 255) or tocolor(255, 0, 0, 255)
+				local redScale = math.min(math.max(completeVelocity - g_PICKUP_SPEED_LIMIT, 0) / (3 * g_PICKUP_SPEED_LIMIT), 1)
+				local color = tocolor(200 * redScale, 200 * (1 - redScale), 0)
 
 				dxDrawRectangle(screenWidth / 2 - 126, screenHeight * 0.85, 252, 27, tocolor(0, 0, 0))
 				dxDrawRectangle(screenWidth / 2 - 122, screenHeight * 0.85 + 4, 244, 19, tocolor(40, 40, 40))
