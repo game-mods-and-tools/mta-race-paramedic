@@ -134,8 +134,6 @@ function updatePlayerRanks() -- unused
 	triggerClientEvent(root, g_PLAYER_RANKING_UPDATE, resourceRoot, states)
 end
 
-addEvent("onColShapeHit")
-
 function initializePickups()
 	for i, p in ipairs(g_PICKUP_POSITIONS) do
 		local col = createColCircle(getElementData(p, "posX"), getElementData(p, "posY"), g_PICKUP_SIZE)
@@ -224,13 +222,13 @@ function initializeHospitals()
 end
 
 addEvent("onRaceStateChanging")
-addEventHandler("onRaceStateChanging", getRootElement(), function(state)
+addEventHandler("onRaceStateChanging", root, function(state)
 	if state == "LoadingMap" then
 		-- what if player joins in middle
 		for _, p in pairs(getElementsByType("player")) do
 			g_PlayerStates[p] = initializeState()
 		end
-		
+
 		initializePickups()
 		initializeHospitals()
 	elseif state == "GridCountdown" then
@@ -240,13 +238,21 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 	end
 end)
 
-addEvent("onPlayerWasted")
-addEventHandler("onPlayerWasted", getRootElement(), function()
+addEventHandler("onPlayerWasted", root, function()
 	local player = source
 
 	local state = g_PlayerStates[player]
 	if not state then return end
 
 	updateCheckpointFor(player, -1)
+	getNewMarkersFor(player)
+end)
+
+addEventHandler("onPlayerJoin", root, function()
+	local player = source
+
+	if g_PlayerStates[player] return
+
+	g_PlayerStates[player] = initializeState()
 	getNewMarkersFor(player)
 end)
