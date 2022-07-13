@@ -10,9 +10,8 @@ g_HOSPITAL_LOCATION_EVENT = "onHospitalMarkerReceived"
 g_PATIENT_DROPOFF_EVENT = "onPatientsDroppedOff"
 g_PLAYER_RANKING_UPDATE = "onRanksUpdated"
 
-g_NUM_LEVELS = #getElementsByType("checkpoint") / 2 -- why are checkpoints doubled? maybe bc name/type
+g_NUM_LEVELS = #getElementsByType("checkpoint", resourceRoot)
 
-g_PICKUPS_FOR_LEVEL_CACHE = {2, 3}
 function g_PICKUPS_FOR_LEVEL(level)
 	return level
 end
