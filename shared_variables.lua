@@ -14,8 +14,5 @@ g_NUM_LEVELS = #getElementsByType("checkpoint") / 2 -- why are checkpoints doubl
 
 g_PICKUPS_FOR_LEVEL_CACHE = {2, 3}
 function g_PICKUPS_FOR_LEVEL(level)
-	if g_PICKUPS_FOR_LEVEL_CACHE[level] then return g_PICKUPS_FOR_LEVEL_CACHE[level] end
-
-	g_PICKUPS_FOR_LEVEL_CACHE[level] = g_PICKUPS_FOR_LEVEL(level - 1) + g_PICKUPS_FOR_LEVEL(level - 2)
-	return g_PICKUPS_FOR_LEVEL_CACHE[level]
+	return level
 end
