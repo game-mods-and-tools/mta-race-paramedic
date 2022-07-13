@@ -369,7 +369,7 @@ for i, p in ipairs(pickupPositions) do
 			if v == i then
 				triggerSpeedCheckFor(player, function()
 					-- need state event?
-					local id = table.remove(state.markers, i)
+					local id = table.remove(state.markers, i2)
 					triggerClientEvent(player, g_PICKUP_PATIENT_EVENT, resourceRoot, i)
 
 					updatePickupsFor(player, 1)
