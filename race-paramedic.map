@@ -1,0 +1,8 @@
+<map edf:definitions="editor_main,race">
+    <spawnpoint id="spawnpoint (Ambulance) (1)" vehicle="416" interior="0" posX="-2202.6108" posY="-2314.5366" posZ="30.73538" rotX="0" rotY="0" rotZ="320"></spawnpoint>
+    <checkpoint id="checkpoint () (1)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (2)" posX="-217711111111.41" posY="-2266.8848" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
+    <checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (3)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
+    <marker id="marker (cylinder) (1)" type="cylinder" color="#FE000049" size="5" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
+    <marker id="marker (cylinder) (2)" type="cylinder" color="#FE000041" size="6" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
+    <marker id="marker (cylinder) (3)" type="cylinder" color="#FE000033" size="6.9000001" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
+</map>
