@@ -8,8 +8,6 @@ addEventHandler(g_PICKUP_PATIENT_EVENT, resourceRoot, function(i)
 
 	destroyElement(g_Pickups[i].marker)
 	destroyElement(g_Pickups[i].blip)
-
-	local vehicle = getPedOccupiedVehicle(localPlayer)
 	g_Pickups[i] = nil
 
 	playSound("blip.wav")

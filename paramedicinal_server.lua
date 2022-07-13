@@ -253,7 +253,7 @@ function getNewMarkersFor(player)
 	end
 end
 
-function triggerSpeedCheckFor(player, idx)
+function triggerSpeedCheckFor(player, onSuccessFn)
 	local state = g_PlayerStates[player]
 	local vehicle = getPedOccupiedVehicle(player)
 
@@ -264,12 +264,7 @@ function triggerSpeedCheckFor(player, idx)
 			local completeVelocity = x * x + y * y + z * z
 			if completeVelocity < g_MAX_PICKUP_SPEED then
 				removeSpeedCheckFor(player)
-
-				-- need state event?
-				local id = table.remove(state.markers, idx)
-				triggerClientEvent(player, g_PICKUP_PATIENT_EVENT, resourceRoot, id)
-
-				updatePickupsFor(player, 1)
+				onSuccessFn()
 				return
 			end
 		end, g_SPEED_CHECK_INTERVAL, 0),
@@ -320,7 +315,7 @@ function toPlayer(element)
 end
 
 ---- logic
-function updatePlayerRanks()
+function updatePlayerRanks() -- unused
 	local states = {}
 	for p, v in pairs(g_PlayerStates) do
 		states[#states + 1] = {
@@ -372,7 +367,13 @@ for i, p in ipairs(pickupPositions) do
 
 		for i2, v in ipairs(state.markers) do
 			if v == i then
-				triggerSpeedCheckFor(player, i2)
+				triggerSpeedCheckFor(player, function()
+					-- need state event?
+					local id = table.remove(state.markers, i)
+					triggerClientEvent(player, g_PICKUP_PATIENT_EVENT, resourceRoot, i)
+
+					updatePickupsFor(player, 1)
+				end)
 				return
 			end
 		end
@@ -410,19 +411,30 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 
 			if state.pickups == 0 then return end
 
-			triggerClientEvent(player, g_PATIENT_DROPOFF_EVENT, resourceRoot, state.pickups)
-			updatePickupsFor(player, -g_MAX_PICKUPS)
+			triggerSpeedCheckFor(player, function()
+				triggerClientEvent(player, g_PATIENT_DROPOFF_EVENT, resourceRoot, state.pickups)
+				updatePickupsFor(player, -g_MAX_PICKUPS)
 
-			if #state.markers == 0 then
-				-- internal race implementation details that makes things work
-				triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
-				-- triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
+				if #state.markers == 0 then
+					-- internal race implementation details that makes things work
+					triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
+					-- triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
 
-				updateCheckpointFor(player, 1)
-				getNewMarkersFor(player)
-			end
+					updateCheckpointFor(player, 1)
+					getNewMarkersFor(player)
+				end
+			end)
+		end)
 
-			updatePlayerRanks()
+		addEventHandler("onColShapeLeave", g_Hospital.col, function(element)
+			local player, vehicle = toPlayer(element)
+			if not player then return end
+
+			local state = g_PlayerStates[player]
+			if not state then return end
+
+			if not state.speedCheck then return end
+			removeSpeedCheckFor(player)
 		end)
 	end
 
@@ -431,7 +443,6 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 			getNewMarkersFor(p)
 		end
 		triggerClientEvent(root, g_HOSPITAL_LOCATION_EVENT, resourceRoot, hospitalPos.posX, hospitalPos.posY, hospitalPos.posZ)
-		updatePlayerRanks()
 	end
 end)
 
