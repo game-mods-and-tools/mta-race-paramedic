@@ -238,6 +238,7 @@ end
 
 function getNewMarkersFor(player)
 	local state = g_PlayerStates[player]
+
 	state.markers = uniqueRandoms(#pickupPositions, g_PICKUPS_FOR_LEVEL(state.checkpoint))
 
 	local timeToCheck = state.speedCheck and getTimerDetails(state.speedCheck) or false
@@ -257,7 +258,7 @@ function triggerSpeedCheckFor(player, onSuccessFn)
 	local state = g_PlayerStates[player]
 	local vehicle = getPedOccupiedVehicle(player)
 
-	-- check state.speedCheck for existing timer (shouldn't happen)
+	-- check state.speedCheck for existing timer? (shouldn't happen)
 	state.speedCheck = {
 		timer = setTimer(function()
 			local x, y, z = getElementVelocity(vehicle)
@@ -419,6 +420,8 @@ addEventHandler("onRaceStateChanging", getRootElement(), function(state)
 					-- internal race implementation details that makes things work
 					triggerClientEvent(player, "onClientCall_race", root, "checkpointReached", vehicle)
 					-- triggerEvent("onPlayerReachCheckpointInternal", player, state.checkpoint)
+
+					if state.checkpoint == g_NUM_LEVELS then return end
 
 					updateCheckpointFor(player, 1)
 					getNewMarkersFor(player)

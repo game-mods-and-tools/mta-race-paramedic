@@ -61,7 +61,7 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 			dxDrawText("PATIENTS              " .. #g_State.markers, screenWidth * 0.65, screenHeight * 0.28, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
 			dxDrawText("SEATS FREE          " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65 + 2, screenHeight * 0.33 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
 			dxDrawText("SEATS FREE          " .. g_MAX_PICKUPS - g_State.pickups, screenWidth * 0.65, screenHeight * 0.33, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
-		
+
 			if g_State.speedCheckTimer then -- pickup timer visualisationicator
 				local elapsed = getTickCount() - g_State.speedCheckTimer
 				local timeToCheck = elapsed % g_SPEED_CHECK_INTERVAL
