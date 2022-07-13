@@ -11,6 +11,8 @@ g_PATIENT_DROPOFF_EVENT = "onPatientsDroppedOff"
 g_PLAYER_RANKING_UPDATE = "onRanksUpdated"
 
 g_NUM_LEVELS = #getElementsByType("checkpoint", resourceRoot)
+g_PICKUP_POSITIONS = getElementsByType("patient", resourceRoot)
+g_HOSPITAL_POSITIONS = getElementsByType("hospital", resourceRoot)
 
 function g_PICKUPS_FOR_LEVEL(level)
 	return level

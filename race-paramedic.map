@@ -1,11 +1,56 @@
-<map edf:definitions="editor_main,race">
+<map edf:definitions="editor_main,race,race-paramedic">
 	<spawnpoint id="spawnpoint (Ambulance) (1)" vehicle="416" interior="0" posX="-2202.6108" posY="-2314.5366" posZ="30.73538" rotX="0" rotY="0" rotZ="320"></spawnpoint>
+	<hospital posX="-2199.0303" posY="-2290.5752" posZ="29.575"></hospital>
+	
+	<patient posX="-2159.6816" posY="-2244.3206" posZ="29.50715"></patient>
+	<patient posX="-2139.9207" posY="-2233.2187" posZ="29.50715"></patient>
+	<patient posX="-2132.3328" posY="-2247.9009" posZ="29.50715"></patient>
+	<patient posX="-2115.843" posY="-2250.4824" posZ="29.50715"></patient>
+	<patient posX="-2089.8545" posY="-2271.5955" posZ="29.50715"></patient>
+	<patient posX="-2075.1992" posY="-2288.686" posZ="29.50715"></patient>
+	<patient posX="-2092.7029" posY="-2317.939" posZ="29.50715"></patient>
+	<patient posX="-2118.9805" posY="-2335.9609" posZ="29.50715"></patient>
+	<patient posX="-2122.6348" posY="-2270.5508" posZ="29.50715"></patient>
+	<patient posX="-2138.3113" posY="-2304.3687" posZ="29.50715"></patient>
+	<patient posX="-2136.2776" posY="-2333.7444" posZ="29.50715"></patient>
+	<patient posX="-2102.5715" posY="-2355.8171" posZ="29.50715"></patient>
+	<patient posX="-2114.5393" posY="-2377.9639" posZ="29.50715"></patient>
+	<patient posX="-2133.2964" posY="-2388.4546" posZ="29.50715"></patient>
+	<patient posX="-2159.6116" posY="-2395.0969" posZ="29.50715"></patient>
+	<patient posX="-2181.6904" posY="-2367.3984" posZ="29.50715"></patient>
+	<patient posX="-2168.2336" posY="-2340.9944" posZ="29.50715"></patient>
+	<patient posX="-2164.1111" posY="-2301.2283" posZ="29.50715"></patient>
+	<patient posX="-2165.7083" posY="-2324.2825" posZ="29.50715"></patient>
+	<patient posX="-2225.9204" posY="-2347.4812" posZ="29.50715"></patient>
+	<patient posX="-2195.6978" posY="-2386.0054" posZ="29.50715"></patient>
+	<patient posX="-2209.4436" posY="-2411.9771" posZ="29.50715"></patient>
+	<patient posX="-2217.2271" posY="-2434.9563" posZ="29.50715"></patient>
+	<patient posX="-2228.3694" posY="-2466.1243" posZ="29.50715"></patient>
+	<patient posX="-2210.9248" posY="-2469.0176" posZ="29.50715"></patient>
+	<patient posX="-2250.0762" posY="-2555.2937" posZ="30.9099"></patient>
+	<patient posX="-2189.5339" posY="-2496.4224" posZ="29.50715"></patient>
+	<patient posX="-2151.0454" posY="-2526.7122" posZ="29.50715"></patient>
+	<patient posX="-2121.7263" posY="-2531.845" posZ="29.50715"></patient>
+	<patient posX="-2073.8025" posY="-2559.511" posZ="29.50715"></patient>
+	<patient posX="-2074.2107" posY="-2535.070" posZ="29.50715"></patient>
+	<patient posX="-2024.8549" posY="-2544.3938" posZ="29.50715"></patient>
+	<patient posX="-2051.7187" posY="-2493.0918" posZ="29.50715"></patient>
+	<patient posX="-2062.1001" posY="-2472.1995" posZ="29.50715"></patient>
+	<patient posX="-2088.6318" posY="-2489.8562" posZ="29.50715"></patient>
+	<patient posX="-2116.1477" posY="-2493.1907" posZ="29.50715"></patient>
+	<patient posX="-2117.2732" posY="-2511.7234" posZ="29.50715"></patient>
+	<patient posX="-2156.0754" posY="-2502.9546" posZ="29.50715"></patient>
+	<patient posX="-2145.283" posY="-2474.0486" posZ="29.50715"></patient>
+	<patient posX="-2147.7742" posY="-2446.4675" posZ="29.50715"></patient>
+	<patient posX="-2191.0562" posY="-2459.95" posZ="29.50715"></patient>
+	<patient posX="-2196.3093" posY="-2436.2522" posZ="29.50715"></patient>
+	<patient posX="-2169.5371" posY="-2433.938" posZ="29.50715"></patient>
+	<patient posX="-2151.1074" posY="-2424.801" posZ="29.50715"></patient>
+	<patient posX="-2101.9861" posY="-2451.5305" posZ="29.50715"></patient>
+	<patient posX="-2070.0906" posY="-2434.1392" posZ="29.50715"></patient>
+	<patient posX="-2020.8298" posY="-2501.4529" posZ="31.457"></patient>
+	<patient posX="-2125.9285" posY="-2464.7393" posZ="29.50715"></patient>
+	
 	<checkpoint id="checkpoint () (1)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (2)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-	<checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (3)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-	<checkpoint id="checkpoint () (3)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (4)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-	<checkpoint id="checkpoint () (4)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (5)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-	<checkpoint id="checkpoint () (5)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (6)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-	<marker id="marker (cylinder) (1)" type="cylinder" color="#FE000049" size="5" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
-	<marker id="marker (cylinder) (2)" type="cylinder" color="#FE000041" size="6" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
-	<marker id="marker (cylinder) (3)" type="cylinder" color="#FE000033" size="6.9000001" interior="0" dimension="0" alpha="255" posX="-2199.0303" posY="-2290.5752" posZ="29.575" rotX="0" rotY="0" rotZ="0"></marker>
+	<checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
 </map>

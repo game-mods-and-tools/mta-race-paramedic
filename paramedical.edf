@@ -1,0 +1,12 @@
+<def name="paramedical">
+    <element name="patient" friendlyname="Patient">
+        <data name="posX" type="number" default="0" />
+		<data name="posY" type="number" default="0" />
+		<data name="posZ" type="number" default="0" />
+    </element>
+	<element name="hospital" friendlyname="Hospital">
+		<data name="posX" type="number" default="0" />
+		<data name="posY" type="number" default="0" />
+		<data name="posZ" type="number" default="0" />
+	</element>
+</def>

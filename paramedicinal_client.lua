@@ -14,10 +14,14 @@ addEventHandler(g_PICKUP_PATIENT_EVENT, resourceRoot, function(i)
 end)
 
 addEvent(g_NEW_PICKUP_EVENT, true)
-addEventHandler(g_NEW_PICKUP_EVENT, resourceRoot, function(i, x, y, z, r, g, b, a)
+addEventHandler(g_NEW_PICKUP_EVENT, resourceRoot, function(i)
+	local x = getElementData(g_PICKUP_POSITIONS[i], "posX")
+	local y = getElementData(g_PICKUP_POSITIONS[i], "posY")
+	local z = getElementData(g_PICKUP_POSITIONS[i], "posZ")
+
 	g_Pickups[i] = {
-		marker = createMarker(x, y, z, "checkpoint", g_PICKUP_SIZE, r, g, b, a),
-		blip = createBlip(x, y, z, 0, 2, r, g, b, a)
+		marker = createMarker(x, y, z, "checkpoint", g_PICKUP_SIZE, 0, 0, 200, 255),
+		blip = createBlip(x, y, z, 0, 2, 0, 0, 200, 255)
 	}
 end)
 
@@ -51,6 +55,16 @@ addEventHandler("onClientPlayerWasted", localPlayer, function()
 end)
 
 addEventHandler("onClientResourceStart", resourceRoot, function()
+	for _, hospital in pairs(g_HOSPITAL_POSITIONS) do
+		local x = getElementData(hospital, "posX")
+		local y = getElementData(hospital, "posY")
+		local z = getElementData(hospital, "posZ")
+		createMarker(x, y, z, "cylinder", 5, 254, 0, 0, 73)
+		createMarker(x, y, z, "cylinder", 6, 254, 0, 0, 65)
+		createMarker(x, y, z, "cylinder", 7, 254, 0, 0, 51)
+		createBlip(x, y, z, 22, 1, 0, 0, 0, 255)
+	end
+	
 	addEventHandler("onClientRender", root, function()
 		local screenWidth, screenHeight = guiGetScreenSize()
 
