@@ -14,5 +14,6 @@ g_PATIENT_PICKUP_POSITIONS = getElementsByType("patient", resourceRoot)
 g_HOSPITAL_POSITIONS = getElementsByType("hospital", resourceRoot)
 
 function g_PICKUPS_FOR_LEVEL(level)
+	if g_NUM_LEVELS == 1 then return 12 end
 	return level
 end
