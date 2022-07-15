@@ -33,6 +33,12 @@ end)
 addEvent(g_PATIENTS_DROPPED_OFF_EVENT, true)
 addEventHandler(g_PATIENTS_DROPPED_OFF_EVENT, resourceRoot, function(numDropOffs)
 	playSound("bloop.wav")
+	drawText(g_RESCUED_TEXT, 3500)
+end)
+
+addEvent(g_FAILED_PATIENT_PICKUP_EVENT, true)
+addEventHandler(g_FAILED_PATIENT_PICKUP_EVENT, resourceRoot, function()
+	drawText(g_AMBULANCE_FULL_TEXT, 3500)
 end)
 
 addEvent(g_PLAYERS_RANKING_UPDATE, true)
@@ -49,6 +55,18 @@ addEventHandler("onClientPlayerWasted", localPlayer, function()
 	end
 end)
 
+g_DrawStates = {}
+g_GAMEMODE_DESCRIPTION_TEXT = "i dont care"
+g_AMBULANCE_FULL_TEXT = "doesnt really matter"
+g_RESCUED_TEXT = "yep"
+
+function drawText(textKey, duration)
+	g_DrawStates[textKey] = true
+	setTimer(function ()
+		g_DrawStates[textKey] = false
+	end, duration, 1)
+end
+
 addEventHandler("onClientResourceStart", resourceRoot, function()
 	for _, hospital in pairs(g_HOSPITAL_POSITIONS) do
 		local x = getElementData(hospital, "posX")
@@ -59,9 +77,29 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 		createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE + 1, 254, 0, 0, 51)
 		createBlip(x, y, z, 22, 1, 0, 0, 0, 255)
 	end
-	
+
+	drawText(g_GAMEMODE_DESCRIPTION_TEXT, 8000)
+
 	addEventHandler("onClientRender", root, function()
 		local screenWidth, screenHeight = guiGetScreenSize()
+
+		if g_DrawStates[g_GAMEMODE_DESCRIPTION_TEXT] then
+			dxDrawText("Drive the patients to Hospital CAREFULLY. Each ", screenWidth / 2 - screenWidth / 5 + 3, screenHeight * 0.75 + 3, 800, screenHeight, tocolor(0, 0, 0, 255), 2.8, "default-bold")
+			dxDrawText("Drive the #3344DBpatients #C8C8C8to #DE1A1AHospital #C8C8C8CAREFULLY. Each ", screenWidth / 2 - screenWidth / 5, screenHeight * 0.75, 800, screenHeight, tocolor(210, 210, 210, 255), 2.8, "default-bold", center, top, true, true, false, true)
+			dxDrawText("bump reduces their chances of survival.", screenWidth / 2 - screenWidth / 6 + 3, screenHeight * 0.75 + 3 + 40, 800, screenHeight, tocolor(0, 0, 0, 255), 2.8, "default-bold")
+			dxDrawText("bump reduces their chances of survival.", screenWidth / 2 - screenWidth / 6, screenHeight * 0.75 + 40, 800, screenHeight, tocolor(210, 210, 210, 255), 2.8, "default-bold")
+		end
+
+		if g_DrawStates[g_AMBULANCE_FULL_TEXT] then
+			dxDrawText("Ambulance full!!", screenWidth / 2 - 117, screenHeight * 0.8 + 3,  screenWidth, screenHeight, tocolor(0, 0, 0, 255), 3, "default-bold")
+			dxDrawText("Ambulance full!!", screenWidth / 2 - 120, screenHeight * 0.8,  screenWidth, screenHeight, tocolor(210, 210, 210, 255), 3, "default-bold")
+		end
+
+		if g_DrawStates[g_RESCUED_TEXT] then
+			dxDrawText("RESCUED!", screenWidth / 2 - 198, screenHeight * 0.2 + 2,  screenWidth, screenHeight, tocolor(0, 0, 0, 255), 6, "arial",center)
+			dxDrawText("RESCUED!", screenWidth / 2 - 202, screenHeight * 0.2 - 2,  screenWidth, screenHeight, tocolor(0, 0, 0, 255), 6, "arial")
+			dxDrawText("RESCUED!", screenWidth / 2 - 200, screenHeight * 0.2,  screenWidth, screenHeight, tocolor(150, 120, 0, 255), 6, "arial")
+		end
 
 		if g_State then
 			dxDrawText("LEVEL                " .. g_State.checkpoint .. "/" .. g_NUM_LEVELS, screenWidth * 0.65 + 2, screenHeight * 0.25 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")

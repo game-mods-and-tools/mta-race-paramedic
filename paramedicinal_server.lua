@@ -146,10 +146,12 @@ function initializePickups()
 			local state = g_PlayerStates[player]
 			if not state then return end
 
-			if state.pickups >= g_MAX_PATIENTS_IN_VEHICLE then return end
-
 			for i2, v in ipairs(state.markers) do
 				if v == i then
+					if state.pickups >= g_MAX_PATIENTS_IN_VEHICLE then
+						triggerClientEvent(player, g_FAILED_PATIENT_PICKUP_EVENT, resourceRoot)
+						return
+					end
 					triggerSpeedCheckFor(player, function()
 						-- need state event?
 						local id = table.remove(state.markers, i2)
