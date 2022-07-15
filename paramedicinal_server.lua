@@ -177,7 +177,7 @@ end
 
 function initializeHospitals()
 	for _, h in ipairs(g_HOSPITAL_POSITIONS) do
-		local collision = createColCircle(getElementData(h, "posX"), getElementData(h, "posY"), g_PATIENT_PICKUP_MARKER_SIZE)
+		local collision = createColCircle(getElementData(h, "posX"), getElementData(h, "posY"), g_HOSPITAL_MARKER_SIZE)
 
 		addEventHandler("onColShapeHit", collision, function(element)
 			local player, vehicle = toPlayer(element)

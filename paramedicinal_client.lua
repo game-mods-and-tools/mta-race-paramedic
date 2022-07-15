@@ -54,9 +54,9 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 		local x = getElementData(hospital, "posX")
 		local y = getElementData(hospital, "posY")
 		local z = getElementData(hospital, "posZ")
-		createMarker(x, y, z, "cylinder", g_PATIENT_PICKUP_MARKER_SIZE - 1, 254, 0, 0, 73)
-		createMarker(x, y, z, "cylinder", g_PATIENT_PICKUP_MARKER_SIZE, 254, 0, 0, 65)
-		createMarker(x, y, z, "cylinder", g_PATIENT_PICKUP_MARKER_SIZE + 1, 254, 0, 0, 51)
+		createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE, 254, 0, 0, 73)
+		createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE + 0.5, 254, 0, 0, 65)
+		createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE + 1, 254, 0, 0, 51)
 		createBlip(x, y, z, 22, 1, 0, 0, 0, 255)
 	end
 	
