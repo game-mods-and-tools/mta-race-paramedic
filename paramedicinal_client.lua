@@ -36,8 +36,8 @@ addEventHandler(g_PATIENTS_DROPPED_OFF_EVENT, resourceRoot, function(numDropOffs
 	drawText(g_RESCUED_TEXT, 3500)
 end)
 
-addEvent(g_FAILED_PATIENT_PICKUP_EVENT, true)
-addEventHandler(g_FAILED_PATIENT_PICKUP_EVENT, resourceRoot, function()
+addEvent(g_AMBULANCE_FULL_EVENT, true)
+addEventHandler(g_AMBULANCE_FULL_EVENT, resourceRoot, function()
 	drawText(g_AMBULANCE_FULL_TEXT, 3500)
 end)
 

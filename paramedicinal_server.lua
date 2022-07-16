@@ -149,7 +149,7 @@ function initializePickups()
 			for i2, v in ipairs(state.markers) do
 				if v == i then
 					if state.pickups >= g_MAX_PATIENTS_IN_VEHICLE then
-						triggerClientEvent(player, g_FAILED_PATIENT_PICKUP_EVENT, resourceRoot)
+						triggerClientEvent(player, g_AMBULANCE_FULL_EVENT, resourceRoot)
 						return
 					end
 					triggerSpeedCheckFor(player, function()
@@ -158,6 +158,9 @@ function initializePickups()
 						triggerClientEvent(player, g_PATIENT_PICKED_UP_EVENT, resourceRoot, i)
 
 						updatePickupsFor(player, 1)
+						if state.pickups == g_MAX_PATIENTS_IN_VEHICLE then
+							triggerClientEvent(player, g_AMBULANCE_FULL_EVENT, resourceRoot)
+						end
 					end)
 					return
 				end

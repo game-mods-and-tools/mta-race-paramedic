@@ -7,7 +7,7 @@ g_HOSPITAL_MARKER_SIZE = 5.5
 g_PLAYER_STATE_UPDATE_EVENT = "onPlayerStateUpdate"
 g_NEW_PATIENT_MARKER_EVENT = "onNewPatientMarker"
 g_PATIENT_PICKED_UP_EVENT = "onPatientPickedUp"
-g_FAILED_PATIENT_PICKUP_EVENT = "onPatientNotPickedUp"
+g_AMBULANCE_FULL_EVENT = "onPatientNotPickedUp"
 g_PATIENTS_DROPPED_OFF_EVENT = "onPatientsDroppedOff"
 g_PLAYERS_RANKING_UPDATE = "onPlayersRanksUpdated" -- unused
 
