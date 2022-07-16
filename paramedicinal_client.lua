@@ -126,3 +126,9 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 		end
 	end)
 end)
+
+addEventHandler("onClientExplosion", root, function(x, y, z, t)
+	if t == 4 then
+		cancelEvent()
+	end
+end)
