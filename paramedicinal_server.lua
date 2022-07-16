@@ -247,6 +247,7 @@ addEventHandler("onPlayerWasted", root, function()
 	if not state then return end
 
 	updateCheckpointFor(player, -1)
+	updatePickupsFor(player, -g_MAX_PATIENTS_IN_VEHICLE)
 	getNewMarkersFor(player)
 end)
 
