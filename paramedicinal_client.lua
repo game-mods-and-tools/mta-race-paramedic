@@ -42,7 +42,7 @@ function drawPatientMarkers()
 			local z = getElementData(g_PATIENT_PICKUP_POSITIONS[id], "posZ")
 
 			if not g_PatientStates[id].marker then
-				g_PatientStates[id].marker = createMarker(x, y, z, "checkpoint", g_PATIENT_PICKUP_MARKER_SIZE, 0, 0, 200, 255)
+				g_PatientStates[id].marker = createMarker(x, y, z - 0.6, "checkpoint", g_PATIENT_PICKUP_MARKER_SIZE, 0, 0, 200, 255)
 			end
 			if not g_PatientStates[id].blip then
 				g_PatientStates[id].blip = createBlip(x, y, z, 0, 2, 0, 0, 200, 255)
@@ -90,9 +90,9 @@ function initializeHospital(hospital)
 	local x = getElementData(hospital, "posX")
 	local y = getElementData(hospital, "posY")
 	local z = getElementData(hospital, "posZ")
-	createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE, 254, 0, 0, 73)
-	createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE + 0.5, 254, 0, 0, 65)
-	createMarker(x, y, z, "cylinder", g_HOSPITAL_MARKER_SIZE + 1, 254, 0, 0, 51)
+	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE, 254, 0, 0, 73)
+	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE + 0.5, 254, 0, 0, 65)
+	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE + 1, 254, 0, 0, 51)
 	createBlip(x, y, z, 22, 1, 0, 0, 0, 255, -1, 1500)
 
 	local col = createColCircle(getElementData(hospital, "posX"), getElementData(hospital, "posY"), g_HOSPITAL_MARKER_SIZE)
