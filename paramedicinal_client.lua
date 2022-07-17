@@ -111,7 +111,7 @@ function initializeHospital(hospital)
 
 			triggerEvent("onClientCall_race", root, "checkpointReached", element)
 			local level = getElementData(localPlayer, "race.checkpoint")
-			if level < g_NUM_LEVELS then
+			if level <= g_NUM_LEVELS then
 				getNewPatients(level)
 			end
 		end)
