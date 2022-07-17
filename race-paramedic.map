@@ -50,5 +50,6 @@
     <patient id="patient (47)" posX="-2020.8298" posY="-2501.4529" posZ="31.457" rotX="0" rotY="0" rotZ="0"></patient>
     <patient id="patient (48)" posX="-2125.9285" posY="-2464.7393" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></patient>
     <checkpoint id="checkpoint () (1)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (2)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
-    <checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
+    <checkpoint id="checkpoint () (2)" type="checkpoint" color="#00F9" size="2.25" nextid="checkpoint () (3)" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
+    <checkpoint id="checkpoint () (3)" type="checkpoint" color="#00F9" size="2.25" posX="-8191111111112" posY="-2244.3203" posZ="29.50715" rotX="0" rotY="0" rotZ="0"></checkpoint>
 </map>
