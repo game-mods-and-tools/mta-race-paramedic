@@ -45,7 +45,7 @@ function drawPatientMarkers()
 				g_PatientStates[id].marker = createMarker(x, y, z - 0.6, "checkpoint", g_PATIENT_PICKUP_MARKER_SIZE, 0, 0, 200, 255)
 			end
 			if not g_PatientStates[id].blip then
-				g_PatientStates[id].blip = createBlip(x, y, z, 0, 2, 0, 0, 200, 255)
+				g_PatientStates[id].blip = createBlip(x, y, z, 0, 2, 0, 0, 200, 255, 2)
 			end
 		end
 	end
@@ -93,7 +93,7 @@ function initializeHospital(hospital)
 	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE, 254, 0, 0, 73)
 	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE + 0.5, 254, 0, 0, 65)
 	createMarker(x, y, z - 0.6, "cylinder", g_HOSPITAL_MARKER_SIZE + 1, 254, 0, 0, 51)
-	createBlip(x, y, z, 22, 1, 0, 0, 0, 255, -1, 1500)
+	createBlip(x, y, z, 22, 1, 0, 0, 0, 255, 1, 1500)
 
 	local col = createColCircle(getElementData(hospital, "posX"), getElementData(hospital, "posY"), g_HOSPITAL_MARKER_SIZE)
 	addEventHandler("onClientColShapeHit", col, function(element)
@@ -200,11 +200,11 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 				patients = patients + 1
 			end
 		end
-		dxDrawText("LEVEL                " .. level .. "/" .. g_NUM_LEVELS, screenWidth * 0.65 + 2, screenHeight * 0.25 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+		dxDrawText("LEVEL                " .. level .. "/" .. g_NUM_LEVELS, screenWidth * 0.65 + 2, screenHeight * 0.25 + 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
 		dxDrawText("LEVEL                " .. level .. "/" .. g_NUM_LEVELS, screenWidth * 0.65, screenHeight * 0.25, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
-		dxDrawText("PATIENTS              " .. patients, screenWidth * 0.65 + 2, screenHeight * 0.28 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+		dxDrawText("PATIENTS              " .. patients, screenWidth * 0.65 + 2, screenHeight * 0.28 + 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
 		dxDrawText("PATIENTS              " .. patients, screenWidth * 0.65, screenHeight * 0.28, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
-		dxDrawText("SEATS FREE          " .. g_OpenSeats, screenWidth * 0.65 + 2, screenHeight * 0.33 - 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
+		dxDrawText("SEATS FREE          " .. g_OpenSeats, screenWidth * 0.65 + 2, screenHeight * 0.33 + 2, screenWidth, screenHeight, tocolor(0, 0, 0, 255), 1, "bankgothic")
 		dxDrawText("SEATS FREE          " .. g_OpenSeats, screenWidth * 0.65, screenHeight * 0.33, screenWidth, screenHeight, tocolor(190, 222, 222, 255), 1, "bankgothic")
 
 		if g_SpeedCheckState then -- pickup timer visualisationicator
