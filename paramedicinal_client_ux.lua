@@ -122,6 +122,8 @@ addEventHandler("onClientResourceStart", resourceRoot, function()
 
 		if g_SpeedCheckTimer then -- pickup timer visualisationicator
 			local timeLeft = getTimerDetails(g_SpeedCheckTimer)
+			if not timeLeft then return end
+
 			local percent = (g_SPEED_CHECK_INTERVAL - timeLeft) / g_SPEED_CHECK_INTERVAL
 
 			local x, y, z = getElementVelocity(getPedOccupiedVehicle(localPlayer))
